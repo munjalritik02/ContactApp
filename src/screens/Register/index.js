@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/native';
+//import {useNavigation} from '@react-navigation/native';
 import {useFocusEffect} from '@react-navigation/native';
 import React from 'react';
 import {useContext} from 'react';
@@ -8,9 +8,9 @@ import {LOGIN} from '../../constants/routeNames';
 import register, {clearAuthState} from '../../context/actions/auth/register';
 import {GlobalContext} from '../../context/Provider';
 
-const Register = () => {
+const Register = ({navigation}) => {
   const [form, setForm] = useState({});
-  const {navigate} = useNavigation();
+ // const {navigate} = useNavigation();
   const [errors, setErrors] = useState({});
   const {
     authDispatch,
@@ -85,8 +85,10 @@ const Register = () => {
       Object.values(form).every((item) => item.trim().length > 0) &&
       Object.values(errors).every((item) => !item)
     ) {
+      console.log(form)
       register(form)(authDispatch)((response) => {
-        navigate(LOGIN, {data: response});
+       // navigate(LOGIN, {data: response});
+       navigation.navigate('Login', {data: response});
       });
     }
   };

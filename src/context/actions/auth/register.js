@@ -39,6 +39,7 @@ import {
         onSuccess(res.data);
       })
       .catch((err) => {
+        console.log(err)
         dispatch({
           type: REGISTER_FAIL,
           payload: err.response
